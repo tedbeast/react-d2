@@ -1,5 +1,5 @@
 export interface Pokemon {
     name:string,
     id:number,
-    url:string
+    url:string[]
 }

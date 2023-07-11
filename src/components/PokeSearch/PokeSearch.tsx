@@ -6,14 +6,17 @@ import { Pokemon } from "../../models/Pokemon";
 function PokeSearch(){
 
     let [inputState, updateInputState] = useState('');
-    let [pokemon, updatePokemonState] = useState({name:'', id: 0, url:''})
+    let [pokemon, updatePokemonState] = useState({name:'', id: 0, url:['']})
 
     function updateState(event : any){
         updateInputState(event.target.value);
     }
     function getPokemonAPI(){
         let pokemon = Axios.get("https://pokeapi.co/api/v2/pokemon/"+inputState).then((response) => 
-        {   let apiPokemon:Pokemon = {name: response.data.name, id: response.data.id, url: response.data.sprites.front_default}
+        {   
+            let spriteArray:string[] = [response.data.sprites.front_default, response.data.sprites.back_default, 
+                response.data.sprites.front_shiny]
+            let apiPokemon:Pokemon = {name: response.data.name, id: response.data.id, url: spriteArray}
             updatePokemonState(apiPokemon)});
     }
 

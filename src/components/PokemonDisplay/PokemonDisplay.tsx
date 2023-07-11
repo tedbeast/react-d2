@@ -6,10 +6,10 @@ interface myProps {
 }
 
 export function PokemonDisplay(props: myProps){
-
+    console.log(props);
     return(<>
     <h1>Name: {props.pokemon.name}</h1>
     <p>id: {props.pokemon.id}</p>
-    <img src={props.pokemon.url}></img>
+    {props.pokemon.url.map((url)=><img src={url}></img>)}
     </>)
 }
